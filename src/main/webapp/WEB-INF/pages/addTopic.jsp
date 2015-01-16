@@ -9,26 +9,37 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
-    <title></title>
+    <title>QA BSM Platform forum: New topic</title>
 </head>
 <body>
-<form:form method="POST"  action="new_topic1">
+<h1>Create new topic</h1>
+
+<a href="forum" id="homeLink"> Home </a>
+
+<form:form method="POST"  action="new_topic1" id="createTopic">
   <table>
     <tr>
-      <td><form:label path="title">Title</form:label></td>
-      <td><form:input path="title" /></td>
+      <td><form:label path="messageTitle">Title</form:label></td>
+      <td><form:input path="messageTitle" /></td>
     </tr>
-    <%--<tr>--%>
-      <%--<td><form:label path="age">Age</form:label></td>--%>
-      <%--<td><form:input path="age" /></td>--%>
-    <%--</tr>--%>
+    <tr>
+      <td><form:label path="messageBody">Message</form:label></td>
+      <td><form:input path="messageBody" /></td>
+    </tr>
+    <tr>
+      <td><form:label path="username">Username</form:label></td>
+      <td><form:input path="username" /></td>
+    </tr>
     <%--<tr>--%>
       <%--<td><form:label path="id">id</form:label></td>--%>
       <%--<td><form:input path="id" /></td>--%>
     <%--</tr>--%>
     <tr>
       <td colspan="2">
-        <input type="submit" value="Submit"/>
+        <input type="submit" value="Submit" id="btnSubmit"/>
+        <%--<a href="/forum">--%>
+          <input type="button" value="Cancel" onclick="window.location='forum'" id="btnCancel"  />
+        <%--</a>--%>
       </td>
     </tr>
   </table>

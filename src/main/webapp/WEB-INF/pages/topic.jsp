@@ -13,27 +13,23 @@
 
 </head>
 <body>
+<a href="../forum" id="homeLink"> Home </a>
 
 
  <h3><b>Topic title: </b>${topic.title}</h3>
  <c:forEach var="message" items="${topic.messages}">
-   <%--<br>Text: <h3>${message.getM}</h3></br>--%>
-   <br>Text: <h3>${message.messageBody}</h3></br>
-   <br>Post date: <h3>${message.postDate}</h3></br>
-   <%--<c:out value="${topic}"/>--%>
-   <%--${topic.body}--%>
-   <%--<form action="topic/${topic}">--%>
-     <%--<input type="submit" value="View topic">--%>
-   <%--</form>--%>
-   <br> -----------------------------------------------------------
+    <br>Text: ${message.messageBody}</br>
+    <br>Post date: ${message.postDate}</br>
+    <br>Posted by user: ${message.username}</br>
+    <br> -----------------------------------------------------------
  </c:forEach>
 
  <%--<input type="checkbox" id="check" />--%>
  <form action="saveMessage" method="post">
    Quick answer:
    <br><input type="text" name="fname"><br>
-
-   <input type="submit" value="Submit">
+     <input type="submit" value="Submit">
+     <%--<input type="button" value="Cancel" onclick="window.location='forum'" id="btnCancel"  />--%>
  </form>
 </body>
 </html>

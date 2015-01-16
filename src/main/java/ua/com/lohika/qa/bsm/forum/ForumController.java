@@ -2,7 +2,10 @@ package ua.com.lohika.qa.bsm.forum;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import ua.com.lohika.qa.bsm.forum.entity.Message;
 import ua.com.lohika.qa.bsm.forum.entity.Topic;
@@ -17,10 +20,10 @@ public class ForumController {
 	@Autowired
 	ForumService forumService;
 
-//	@RequestMapping("/")
-//	public String home() {
-//		return "redirect:/forum";
-//	}
+	@RequestMapping("/")
+	public String home() {
+		return "redirect:/forum";
+	}
 
 	@RequestMapping(value = "/forum", method = RequestMethod.GET)
 	public String showForumMainPage( HttpServletRequest request) {
@@ -39,30 +42,40 @@ public class ForumController {
 
 	@RequestMapping(value = "/new_topic1", method = RequestMethod.GET)
 	public ModelAndView createTopic() {
-		return new ModelAndView("addTopic", "command", new Topic());
+		return new ModelAndView("addTopic", "command", new Message());
 	}
 
+//	@RequestMapping(value = "/new_topic1", method = RequestMethod.POST)
+//	public ModelAndView saveNewTopic(@ModelAttribute("topic") Topic topic, @ModelAttribute("message") Message message) {
+////		Message message = new Message("cewcdew", "wwedwed");
+//		message.setMessageBody("rfrrewf");
+//		message.setUsername("usr");
+//		topic.addMessage(message);
+//		forumService.addTopic(topic);
+//		List<Topic> topics = forumService.getAllTopics();
+//		System.out.println("topics length = " + forumService.getAllTopics().size());
+//		System.out.println(forumService.getAllTopics().get(0).getTitle());
+//		return new ModelAndView("successAddTopic", "topics", topics);
+//	}
+
+
+// new topic creation
 	@RequestMapping(value = "/new_topic1", method = RequestMethod.POST)
-//	public String saveNewTopic(@ModelAttribute("topic") Topic topic, ModelMap model) {
-	public ModelAndView saveNewTopic(@ModelAttribute("topic") Topic topic, @ModelAttribute("message") Message message) {
-//		Message message = new Message("cewcdew", "wwedwed");
-		message.setMessageBody("rfrrewf");
-		message.setUsername("usr");
+	public String saveNewTopic(@ModelAttribute("message") Message message) {
+		Topic topic  = new Topic();
+		topic.setTitle(message.getMessageTitle());
 		topic.addMessage(message);
 		forumService.addTopic(topic);
 		List<Topic> topics = forumService.getAllTopics();
 		System.out.println("topics length = " + forumService.getAllTopics().size());
 		System.out.println(forumService.getAllTopics().get(0).getTitle());
-//		ModelAndView model = new ModelAndView("forum");
-//		model.addAttribute("topics", topics);
-//		return model;
-		return new ModelAndView("successAddTopic", "topics", topics);
+		return "redirect:/forum";
 	}
 
-
+// get topic by ID
 	@RequestMapping(value = "/topic/{topicId}", method = RequestMethod.GET)
 //	@ResponseBody
-	public String getTopicById(HttpServletRequest request, @PathVariable String topicId){
+	public String getTopicById(HttpServletRequest request, @PathVariable("topicId") String topicId){
 		request.setAttribute("topic", forumService.getTopicByTitle(topicId));
 		return "topic";
 	}

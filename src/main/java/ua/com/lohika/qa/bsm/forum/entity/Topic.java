@@ -10,10 +10,15 @@ public class Topic {
     private String title;
     private List<Message> messages = new ArrayList<>();
 
+
+
     public Topic(){
 //        messages = new ArrayList<Message>();
 //        messages = null;
+//        new Message();
     }
+
+
 
     public String getTitle() {
         return title;
@@ -34,4 +39,6 @@ public class Topic {
 //    public void setMessages(List<Message> messages) {
 //        this.messages = messages;
 //    }
+
+
 }

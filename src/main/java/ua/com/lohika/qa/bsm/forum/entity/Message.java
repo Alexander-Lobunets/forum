@@ -6,9 +6,11 @@ import java.util.Date;
  * Created by lobunets on 02.01.2015.
  */
 public class Message {
+    private String messageTitle;
     private String messageBody;
     private String username;
     private String postDate;
+
 
 
     public Message(){
@@ -16,8 +18,8 @@ public class Message {
     }
 
 
-    public Message(String messageBody, String username){
-
+    public Message(String messageTitle, String messageBody, String username){
+        this.messageTitle = messageTitle;
         this.postDate = new Date().toString();
         this.messageBody = messageBody;
         this.username = username;
@@ -42,6 +44,14 @@ public class Message {
 
     public String getPostDate() {
         return postDate;
+    }
+
+    public String getMessageTitle() {
+        return messageTitle;
+    }
+
+    public void setMessageTitle(String messageTitle) {
+        this.messageTitle = messageTitle;
     }
 
 //    public String setPostDate() {
