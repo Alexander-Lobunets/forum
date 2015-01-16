@@ -19,17 +19,13 @@
 <c:forEach var="topic" items="${topics}">
   <h3><b>Topic title: </b>${topic.title}</h3>
   <c:forEach var="message" items="${topic.messages}">
-    <%--<br>Text: <h3>${message.getM}</h3></br>--%>
      <br>Text: ${message.messageBody}</br>
-    <br>Post date: ${message.postDate}</br>
-    <br>Created by: ${message.username}</br>
-  <%--<c:out value="${topic}"/>--%>
-  <%--${topic.body}--%>
-    <form action="topic/${topic.title}">
-         <input type="submit" value="View topic">
-
+     <br>Post date: ${message.postDate}</br>
+     <br>Created by: ${message.username}</br>
+     <form action="topic/${topic.title}">
+           <input type="submit" value="View topic">
     </form>
-  <br> -----------------------------------------------------------
+    <br> -----------------------------------------------------------
   </c:forEach>
 </c:forEach>
 

@@ -30,16 +30,10 @@
       <td><form:label path="username">Username</form:label></td>
       <td><form:input path="username" /></td>
     </tr>
-    <%--<tr>--%>
-      <%--<td><form:label path="id">id</form:label></td>--%>
-      <%--<td><form:input path="id" /></td>--%>
-    <%--</tr>--%>
     <tr>
       <td colspan="2">
         <input type="submit" value="Submit" id="btnSubmit"/>
-        <%--<a href="/forum">--%>
-          <input type="button" value="Cancel" onclick="window.location='forum'" id="btnCancel"  />
-        <%--</a>--%>
+        <input type="button" value="Cancel" onclick="window.location='forum'" id="btnCancel"  />
       </td>
     </tr>
   </table>

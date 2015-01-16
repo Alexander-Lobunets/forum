@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <html>
 <head>
     <title></title>
@@ -18,18 +20,26 @@
 
  <h3><b>Topic title: </b>${topic.title}</h3>
  <c:forEach var="message" items="${topic.messages}">
-    <br>Text: ${message.messageBody}</br>
+    <br>Text: ${message.messageBody} </br>
     <br>Post date: ${message.postDate}</br>
     <br>Posted by user: ${message.username}</br>
     <br> -----------------------------------------------------------
  </c:forEach>
 
- <%--<input type="checkbox" id="check" />--%>
- <form action="saveMessage" method="post">
-   Quick answer:
-   <br><input type="text" name="fname"><br>
-     <input type="submit" value="Submit">
-     <%--<input type="button" value="Cancel" onclick="window.location='forum'" id="btnCancel"  />--%>
- </form>
+
+<form:form method="POST" action="../topic/${topic.title}" >
+
+    <table>
+        <tr>
+            <td><form:label path="messageBody">Quick answer</form:label></td>
+            <%--<td><form:input path="message.messageBody" /></td>--%>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Submit" id="btnSubmit">
+            </td>
+        </tr>
+      </table>
+</form:form>
 </body>
 </html>

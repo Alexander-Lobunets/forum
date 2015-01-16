@@ -2,6 +2,7 @@ package ua.com.lohika.qa.bsm.forum;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,7 +60,7 @@ public class ForumController {
 //	}
 
 
-// new topic creation
+	// new topic creation
 	@RequestMapping(value = "/new_topic1", method = RequestMethod.POST)
 	public String saveNewTopic(@ModelAttribute("message") Message message) {
 		Topic topic  = new Topic();
@@ -74,11 +75,24 @@ public class ForumController {
 
 // get topic by ID
 	@RequestMapping(value = "/topic/{topicId}", method = RequestMethod.GET)
-//	@ResponseBody
 	public String getTopicById(HttpServletRequest request, @PathVariable("topicId") String topicId){
 		request.setAttribute("topic", forumService.getTopicByTitle(topicId));
 		return "topic";
 	}
 
+
+
+	@RequestMapping(value = "/topic/{topicId}", method = RequestMethod.POST)
+	public String addNewMessage(@PathVariable("topicId") String topicId, Message message, ModelMap map){
+//		Message message = new Message();
+
+
+		message.setUsername("HARDCODE");
+		message.setMessageBody("HARDCODE");
+		message.setMessageTitle(topicId);
+		forumService.getTopicByTitle(topicId).addMessage(message);
+
+		return "forum";
+	}
 
 }
