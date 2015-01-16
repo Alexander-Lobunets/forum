@@ -2,7 +2,6 @@ package ua.com.lohika.qa.bsm.forum;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,9 +66,9 @@ public class ForumController {
 		topic.setTitle(message.getMessageTitle());
 		topic.addMessage(message);
 		forumService.addTopic(topic);
-		List<Topic> topics = forumService.getAllTopics();
-		System.out.println("topics length = " + forumService.getAllTopics().size());
-		System.out.println(forumService.getAllTopics().get(0).getTitle());
+//		List<Topic> topics = forumService.getAllTopics();
+//		System.out.println("topics length = " + forumService.getAllTopics().size());
+//		System.out.println(forumService.getAllTopics().get(0).getTitle());
 		return "redirect:/forum";
 	}
 
@@ -80,19 +79,16 @@ public class ForumController {
 		return "topic";
 	}
 
-
-
-	@RequestMapping(value = "/topic/{topicId}", method = RequestMethod.POST)
-	public String addNewMessage(@PathVariable("topicId") String topicId, Message message, ModelMap map){
+	@RequestMapping(value = "/topic/", method = RequestMethod.POST)
+	public String addNewMessage(Message message, String topicId){
 //		Message message = new Message();
-
 
 		message.setUsername("HARDCODE");
 		message.setMessageBody("HARDCODE");
 		message.setMessageTitle(topicId);
 		forumService.getTopicByTitle(topicId).addMessage(message);
 
-		return "forum";
+		return "redirect:/forum";
 	}
 
 }

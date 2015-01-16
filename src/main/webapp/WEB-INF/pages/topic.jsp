@@ -27,13 +27,12 @@
  </c:forEach>
 
 
-<form:form method="POST" action="../topic/${topic.title}" >
-
+<form:form method="POST" action="../topic/" >
     <table>
-        <tr>
-            <td><form:label path="messageBody">Quick answer</form:label></td>
+        <%--<tr>--%>
+            <%--<td><form:label path="messageBody">Quick answer</form:label></td>--%>
             <%--<td><form:input path="message.messageBody" /></td>--%>
-        </tr>
+        <%--</tr>--%>
         <tr>
             <td colspan="2">
                 <input type="submit" value="Submit" id="btnSubmit">
