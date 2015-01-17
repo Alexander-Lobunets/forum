@@ -16,8 +16,7 @@
         <anonymous username="guest" granted-authority="ROLE_ANONYMOUS"/>
         <remember-me/>
     </http>
-
-    <authentication-manager>
+     <authentication-manager>
         <authentication-provider>
             <user-service>
                 <user name="admin" password="pass" authorities="ROLE_ADMIN,ROLE_USER"/>
